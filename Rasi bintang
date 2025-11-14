@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rasi Bintang dengan Informasi Lengkap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a2a, #1a1a4a, #0a0a2a);
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(10, 15, 35, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #4fc3f7;
+            text-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a5d6ff;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .constellation-viewer {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(10, 15, 35, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .info-panel {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(10, 15, 35, 0.7);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .panel-title {
+            font-size: 1.5rem;
+            color: #4fc3f7;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(79, 195, 247, 0.3);
+        }
+        
+        .stars-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: radial-gradient(ellipse at center, #0a0a2a 0%, #000000 100%);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px white;
+        }
+        
+        .star.twinkling {
+            animation: twinkle 3s infinite alternate;
+        }
+        
+        .constellation-line {
+            position: absolute;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.5);
+            transform-origin: 0 0;
+        }
+        
+        .constellation-name {
+            position: absolute;
+            color: #4fc3f7;
+            font-size: 14px;
+            text-shadow: 0 0 5px rgba(79, 195, 247, 0.7);
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            background: linear-gradient(to bottom, #1a237e, #0d1440);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            background: linear-gradient(to bottom, #303f9f, #1a237e);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        button.active {
+            background: linear-gradient(to bottom, #4fc3f7, #1a8fd6);
+            box-shadow: 0 0 10px rgba(79, 195, 247, 0.7);
+        }
+        
+        .info-content {
+            display: none;
+        }
+        
+        .info-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .constellation-title {
+            font-size: 1.8rem;
+            color: #4fc3f7;
+            margin-bottom: 15px;
+        }
+        
+        .constellation-image {
+            width: 100%;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #a5d6ff;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .info-item {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            color: #a5d6ff;
+            font-size: 0.9rem;
+        }
+        
+        .info-value {
+            font-size: 1.1rem;
+        }
+        
+        .description {
+            margin-top: 15px;
+            line-height: 1.7;
+        }
+        
+        .mythology {
+            margin-top: 15px;
+            font-style: italic;
+            color: #d1c4e9;
+            border-left: 3px solid #7e57c2;
+            padding-left: 15px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #a5d6ff;
+            font-size: 0.9rem;
+            background: rgba(10, 15, 35, 0.7);
+            border-radius: 15px;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Panduan Rasi Bintang</h1>
+            <p class="subtitle">Jelajahi keindahan langit malam dan pelajari tentang rasi bintang yang menghiasinya</p>
+        </header>
+        
+        <div class="content">
+            <div class="constellation-viewer">
+                <h2 class="panel-title">Pemandangan Bintang</h2>
+                <div class="stars-container" id="stars-container">
+                    <!-- Bintang dan rasi akan ditambahkan oleh JavaScript -->
+                </div>
+                
+                <div class="controls">
+                    <button id="toggleTwinkle">Hidupkan/Mati Kedipan</button>
+                    <button id="showUrsaMajor" class="active">Ursa Major</button>
+                    <button id="showOrion">Orion</button>
+                    <button id="showCassiopeia">Cassiopeia</button>
+                    <button id="showScorpius">Scorpius</button>
+                    <button id="showLeo">Leo</button>
+                </div>
+            </div>
+            
+            <div class="info-panel">
+                <h2 class="panel-title">Informasi Rasi Bintang</h2>
+                
+                <div id="ursaMajorInfo" class="info-content active">
+                    <h3 class="constellation-title">Ursa Major (Beruang Besar)</h3>
+                    <div class="constellation-image">Gambar Ursa Major</div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Nama Lain</div>
+                            <div class="info-value">Big Dipper, Biduk</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Bintang Terang</div>
+                            <div class="info-value">Dubhe, Alioth</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Luas</div>
+                            <div class="info-value">1.280 derajat persegi</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Terlihat</div>
+                            <div class="info-value">Sepanjang tahun (belahan utara)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="description">
+                        Ursa Major adalah salah satu rasi bintang paling terkenal di belahan utara. Rasi ini dikenal dengan asterisme Biduk (Big Dipper) yang terdiri dari tujuh bintang terang. Ursa Major dapat digunakan untuk menemukan Polaris, bintang utara.
+                    </div>
+                    
+                    <div class="mythology">
+                        Dalam mitologi Yunani, Ursa Major mewakili Callisto, seorang nimfa yang diubah menjadi beruang oleh Hera dan kemudian ditempatkan di langit oleh Zeus.
+                    </div>
+                </div>
+                
+                <div id="orionInfo" class="info-content">
+                    <h3 class="constellation-title">Orion (Pemburu)</h3>
+                    <div class="constellation-image">Gambar Orion</div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Bintang Terang</div>
+                            <div class="info-value">Rigel, Betelgeuse</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Luas</div>
+                            <div class="info-value">594 derajat persegi</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Terlihat</div>
+                            <div class="info-value">Musim dingin</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Objek Menarik</div>
+                            <div class="info-value">Nebula Orion</div>
+                        </div>
+                    </div>
+                    
+                    <div class="description">
+                        Orion adalah salah satu rasi bintang paling mencolok dan mudah dikenali di langit malam. Rasi ini menampilkan tiga bintang sejajar yang membentuk "sabuk Orion". Orion juga mengandung Nebula Orion, daerah pembentuk bintang yang terkenal.
+                    </div>
+                    
+                    <div class="mythology">
+                        Dalam mitologi Yunani, Orion adalah seorang pemburu perkasa yang ditempatkan di antara bintang-bintang setelah kematiannya. Ia sering digambarkan menghadapi Taurus, sang banteng.
+                    </div>
+                </div>
+                
+                <div id="cassiopeiaInfo" class="info-content">
+                    <h3 class="constellation-title">Cassiopeia (Ratu)</h3>
+                    <div class="constellation-image">Gambar Cassiopeia</div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Bentuk</div>
+                            <div class="info-value">Huruf W atau M</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Bintang Terang</div>
+                            <div class="info-value">Schedar, Caph</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Luas</div>
+                            <div class="info-value">598 derajat persegi</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Terlihat</div>
+                            <div class="info-value">Sepanjang tahun (belahan utara)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="description">
+                        Cassiopeia adalah rasi bintang yang mudah dikenali karena bentuknya yang menyerupai huruf "W" atau "M". Rasi ini terletak di langit utara dan dapat digunakan untuk menemukan Bintang Utara (Polaris).
+                    </div>
+                    
+                    <div class="mythology">
+                        Dalam mitologi Yunani, Cassiopeia adalah ratu Ethiopia yang sombong. Karena kesombongannya, ia dihukum dengan ditempatkan di langit, terkadang terbalik, sebagai pelajaran kerendahan hati.
+                    </div>
+                </div>
+                
+                <div id="scorpiusInfo" class="info-content">
+                    <h3 class="constellation-title">Scorpius (Kalajengking)</h3>
+                    <div class="constellation-image">Gambar Scorpius</div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Bintang Terang</div>
+                            <div class="info-value">Antares, Shaula</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Luas</div>
+                            <div class="info-value">497 derajat persegi</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Terlihat</div>
+                            <div class="info-value">Musim panas</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Zodiak</div>
+                            <div class="info-value">Ya (23 Okt - 22 Nov)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="description">
+                        Scorpius adalah salah satu rasi bintang zodiak yang mudah dikenali karena bentuknya yang menyerupai kalajengking. Bintang paling terangnya, Antares, adalah bintang super raksasa merah yang sering disebut "saingan Mars" karena warnanya yang kemerahan.
+                    </div>
+                    
+                    <div class="mythology">
+                        Dalam mitologi Yunani, Scorpius adalah kalajengking yang dikirim oleh Gaia untuk membunuh Orion. Itulah sebabnya konon Orion terbenam saat Scorpius terbit, seolah-olah masih melarikan diri dari kalajengking itu.
+                    </div>
+                </div>
+                
+                <div id="leoInfo" class="info-content">
+                    <h3 class="constellation-title">Leo (Singa)</h3>
+                    <div class="constellation-image">Gambar Leo</div>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Bintang Terang</div>
+                            <div class="info-value">Regulus, Denebola</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Luas</div>
+                            <div class="info-value">947 derajat persegi</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Terlihat</div>
+                            <div class="info-value">Musim semi</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Zodiak</div>
+                            <div class="info-value">Ya (23 Jul - 22 Agu)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="description">
+                        Leo adalah rasi bintang zodiak yang mudah dikenali karena bentuknya yang menyerupai singa. Bagian depan singa membentuk asterisme "Sabit" yang menonjol, dengan Regulus sebagai bintang paling terang yang menandai jantung singa.
+                    </div>
+                    
+                    <div class="mythology">
+                        Dalam mitologi Yunani, Leo mewakili Nemean Lion, hewan buas yang tidak bisa dilukai oleh senjata dan dibunuh oleh Hercules sebagai salah satu dari dua belas tugasnya.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Dibuat dengan HTML, CSS, dan JavaScript | Panduan Rasi Bintang &copy; 2023</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data rasi bintang
+        const constellations = {
+            ursaMajor: {
+                name: "Ursa Major",
+                stars: [
+                    { x: 100, y: 100, name: "Dubhe" },
+                    { x: 150, y: 120, name: "Merak" },
+                    { x: 200, y: 100, name: "Phecda" },
+                    { x: 250, y: 120, name: "Megrez" },
+                    { x: 300, y: 100, name: "Alioth" },
+                    { x: 350, y: 120, name: "Mizar" },
+                    { x: 400, y: 100, name: "Alkaid" }
+                ],
+                lines: [
+                    [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6]
+                ]
+            },
+            orion: {
+                name: "Orion",
+                stars: [
+                    { x: 450, y: 200, name: "Betelgeuse" },
+                    { x: 500, y: 250, name: "Bellatrix" },
+                    { x: 450, y: 300, name: "Mintaka" },
+                    { x: 400, y: 300, name: "Alnilam" },
+                    { x: 350, y: 300, name: "Alnitak" },
+                    { x: 450, y: 350, name: "Saiph" },
+                    { x: 500, y: 350, name: "Rigel" }
+                ],
+                lines: [
+                    [0, 1], [1, 2], [2, 3], [3, 4], [2, 5], [5, 6], [1, 6]
+                ]
+            },
+            cassiopeia: {
+                name: "Cassiopeia",
+                stars: [
+                    { x: 200, y: 250, name: "Schedar" },
+                    { x: 250, y: 200, name: "Caph" },
+                    { x: 300, y: 250, name: "Cih" },
+                    { x: 250, y: 300, name: "Ruchbah" },
+                    { x: 200, y: 350, name: "Segin" }
+                ],
+                lines: [
+                    [0, 1], [1, 2], [2, 3], [3, 4]
+                ]
+            },
+            scorpius: {
+                name: "Scorpius",
+                stars: [
+                    { x: 100, y: 250, name: "Antares" },
+                    { x: 150, y: 230, name: "Graffias" },
+                    { x: 200, y: 220, name: "Dschubba" },
+                    { x: 250, y: 240, name: "Sargas" },
+                    { x: 300, y: 270, name: "Shaula" },
+                    { x: 350, y: 300, name: "Lesath" }
+                ],
+                lines: [
+                    [0, 1], [1, 2], [2, 3], [3, 4], [4, 5]
+                ]
+            },
+            leo: {
+                name: "Leo",
+                stars: [
+                    { x: 450, y: 100, name: "Regulus" },
+                    { x: 500, y: 130, name: "Algieba" },
+                    { x: 550, y: 100, name: "Adhafera" },
+                    { x: 500, y: 170, name: "Denebola" },
+                    { x: 450, y: 200, name: "Zosm
