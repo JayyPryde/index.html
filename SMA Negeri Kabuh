@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rasi Bintang Ursa Major</title>
+    <style>
+        body {
+            background-color: #0a0a2a;
+            color: #e0e0ff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 1000px;
+        }
+        
+        h1 {
+            color: #4fc3f7;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #bb86fc;
+            margin-bottom: 30px;
+        }
+        
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .constellation-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            background: linear-gradient(135deg, #1a1a4a, #0c0c2a);
+            border: 2px solid #4fc3f7;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(79, 195, 247, 0.3);
+        }
+        
+        .photo-container {
+            width: 600px;
+            height: 400px;
+            background: linear-gradient(135deg, #1a1a4a, #0c0c2a);
+            border: 2px solid #4fc3f7;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(79, 195, 247, 0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .photo-title {
+            background-color: rgba(30, 30, 70, 0.8);
+            padding: 10px;
+            font-weight: bold;
+            color: #4fc3f7;
+            border-bottom: 1px solid #4fc3f7;
+        }
+        
+        .photo-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #4fc3f7, 0 0 20px #bb86fc;
+        }
+        
+        .star-label {
+            position: absolute;
+            color: #e0e0ff;
+            font-size: 12px;
+            font-weight: bold;
+            text-shadow: 0 0 5px black;
+        }
+        
+        .constellation-line {
+            position: absolute;
+            background-color: rgba(79, 195, 247, 0.6);
+            height: 2px;
+            transform-origin: 0 0;
+            box-shadow: 0 0 5px #4fc3f7;
+        }
+        
+        .big-dipper {
+            color: #ff9800;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .info-box {
+            background-color: rgba(30, 30, 70, 0.8);
+            border: 1px solid #4fc3f7;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: left;
+            max-width: 800px;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1a1a4a, #2a2a6a);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #bb86fc;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .photo-placeholder i {
+            font-size: 60px;
+            margin-bottom: 15px;
+            color: #4fc3f7;
+        }
+        
+        .photo-description {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #e0e0ff;
+        }
+        
+        @media (max-width: 1250px) {
+            .content-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .constellation-container, .photo-container {
+                width: 90%;
+                max-width: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 Rasi Bintang Ursa Major</h1>
+        <div class="subtitle">(Beruang Besar / Biduk)</div>
+        
+        <div class="content-wrapper">
+            <div class="constellation-container" id="constellation">
+                <!-- Stars and lines will be generated by JavaScript -->
+            </div>
+            
+            <div class="photo-container">
+                <div class="photo-title">Foto Rasi Bintang Ursa Major di Langit</div>
+                <div class="photo-content">
+                    <div class="photo-placeholder">
+                        <i>🖼️</i>
+                        <div>
+                            <strong>Foto Rasi Bintang Ursa Major</strong>
+                            <div class="photo-description">
+                                Untuk menambahkan foto asli Ursa Major, ganti elemen ini dengan tag img:<br>
+                                &lt;img src="ursa-major.jpg" alt="Ursa Major" style="width:100%; height:100%; object-fit:cover;"&gt;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="big-dipper">✨ "The Big Dipper" (Gayung Besar) ✨</div>
+        
+        <div class="info-box">
+            <h3>📖 Informasi Rasi Bintang:</h3>
+            <p><strong>Nama:</strong> Ursa Major (Beruang Besar)</p>
+            <p><strong>Asterisme terkenal:</strong> Big Dipper (Gayung Besar/Biduk)</p>
+            <p><strong>Terlihat di:</strong> Belahan Bumi Utara</p>
+            <p><strong>Ciri khas:</strong> Tujuh bintang terang yang membentuk bentuk panci/gayung</p>
+            <p><strong>Fungsi navigasi:</strong> Bintang Dubhe dan Merak menunjuk ke Polaris (Bintang Kutub)</p>
+            <p><strong>Bintang Utama:</strong> Dubhe (α Ursae Majoris), Merak (β Ursae Majoris), Phecda (γ Ursae Majoris), Megrez (δ Ursae Majoris), Alioth (ε Ursae Majoris), Mizar (ζ Ursae Majoris), Alkaid (η Ursae Majoris)</p>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: white;"></div>
+                <span>Bintang</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #4fc3f7;"></div>
+                <span>Garis Rasi Bintang</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Star data: [x, y, radius, name]
+        const stars = [
+            [100, 150, 6, "Dubhe (α)"],      // Top right of bowl
+            [120, 200, 5, "Merak (β)"],      // Bottom right of bowl
+            [200, 180, 4, "Phecda (γ)"],     // Bottom left of bowl
+            [180, 130, 4, "Megrez (δ)"],     // Top left of bowl
+            [250, 110, 5, "Alioth (ε)"],     // First star of handle
+            [320, 90, 5, "Mizar (ζ)"],       // Middle star of handle
+            [390, 70, 6, "Alkaid (η)"]       // End star of handle
+        ];
+
+        // Lines data: [startIndex, endIndex]
+        const lines = [
+            [0, 1], [1, 2], [2, 3], [3, 0],  // Bowl
+            [3, 4], [4, 5], [5, 6]           // Handle
+        ];
+
+        const container = document.getElementById('constellation');
+
+        // Draw lines
+        lines.forEach(([start, end]) => {
+            const startStar = stars[start];
+            const endStar = stars[end];
+            
+            const line = document.createElement('div');
+            line.className = 'constellation-line';
+            
+            const length = Math.sqrt(
+                Math.pow(endStar[0] - startStar[0], 2) + 
+                Math.pow(endStar[1] - startStar[1], 2)
+            );
+            
+            const angle = Math.atan2(
+                endStar[1] - startStar[1], 
+                endStar[0] - startStar[0]
+            ) * 180 / Math.PI;
+            
+            line.style.width = length + 'px';
+            line.style.left = startStar[0] + 'px';
+            line.style.top = startStar[1] + 'px';
+            line.style.transform = `rotate(${angle}deg)`;
+            
+            container.appendChild(line);
+        });
+
+        // Draw stars
+        stars.forEach(([x, y, radius, name]) => {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = (radius * 2) + 'px';
+            star.style.height = (radius * 2) + 'px';
+            star.style.left = (x - radius) + 'px';
+            star.style.top = (y - radius) + 'px';
+            
+            const label = document.createElement('div');
+            label.className = 'star-label';
+            label.textContent = name;
+            label.style.left = (x + 10) + 'px';
+            label.style.top = (y - 10) + 'px';
+            
+            container.appendChild(star);
+            container.appendChild(label);
+        });
+
+        // Add twinkling effect
+        setInterval(() => {
+            const allStars = document.querySelectorAll('.star');
+            const randomStar = allStars[Math.floor(Math.random() * allStars.length)];
+            randomStar.style.opacity = Math.random() * 0.5 + 0.5;
+            
+            setTimeout(() => {
+                randomStar.style.opacity = '1';
+            }, 200);
+        }, 300);
+        
+        // Function to load actual photo (uncomment and update path when you have the image)
+        /*
+        function loadUrsaMajorPhoto() {
+            const photoContent = document.querySelector('.photo-content');
+            photoContent.innerHTML = '<img src="ursa-major.jpg" alt="Ursa Major Constellation" style="width:100%; height:100%; object-fit:cover;">';
+        }
+        
+        // Uncomment the line below when you have the image file
+        // loadUrsaMajorPhoto();
+        */
+    </script>
+</body>
+</html>
