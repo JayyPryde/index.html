@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi Rasi Bintang</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #f0f8ff;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(100, 149, 237, 0.7);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #b0c4de;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .constellation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .constellation-card {
+            background: rgba(16, 32, 48, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(100, 149, 237, 0.3);
+        }
+        
+        .constellation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+        }
+        
+        .constellation-image {
+            width: 100%;
+            height: 200px;
+            background-color: #0a1929;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .star-pattern {
+            position: relative;
+            width: 80%;
+            height: 80%;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px white;
+        }
+        
+        .star::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 150%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+        }
+        
+        .star-line {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5);
+            height: 2px;
+            transform-origin: 0 0;
+        }
+        
+        .constellation-info {
+            padding: 20px;
+        }
+        
+        .constellation-name {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #6495ed;
+        }
+        
+        .constellation-latin {
+            font-style: italic;
+            color: #87ceeb;
+            margin-bottom: 15px;
+        }
+        
+        .constellation-desc {
+            margin-bottom: 15px;
+            color: #e0e0e0;
+        }
+        
+        .constellation-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .detail-item {
+            text-align: center;
+        }
+        
+        .detail-label {
+            font-size: 0.9rem;
+            color: #b0c4de;
+        }
+        
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #87ceeb;
+            border-top: 1px solid rgba(100, 149, 237, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .constellation-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Rasi Bintang</h1>
+        <p class="subtitle">Jelajahi keindahan dan misteri konstelasi bintang yang menghiasi langit malam. Setiap rasi bintang memiliki cerita dan karakteristik uniknya sendiri.</p>
+    </header>
+    
+    <div class="container">
+        <div class="constellation-grid">
+            <!-- Orion -->
+            <div class="constellation-card">
+                <div class="constellation-image">
+                    <div class="star-pattern" id="orion-pattern">
+                        <!-- Pola bintang Orion akan dihasilkan oleh JavaScript -->
+                    </div>
+                </div>
+                <div class="constellation-info">
+                    <h2 class="constellation-name">Orion</h2>
+                    <p class="constellation-latin">Orion</p>
+                    <p class="constellation-desc">Rasi bintang yang mudah dikenali dengan tiga bintang sejajar yang membentuk "sabuk Orion". Dikenal sebagai pemburu dalam mitologi Yunani.</p>
+                    <div class="constellation-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Bintang Terang</div>
+                            <div class="detail-value">Rigel, Betelgeuse</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Terlihat</div>
+                            <div class="detail-value">Nov - Feb</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ursa Major -->
+            <div class="constellation-card">
+                <div class="constellation-image">
+                    <div class="star-pattern" id="ursa-major-pattern">
+                        <!-- Pola bintang Ursa Major akan dihasilkan oleh JavaScript -->
+                    </div>
+                </div>
+                <div class="constellation-info">
+                    <h2 class="constellation-name">Beruang Besar</h2>
+                    <p class="constellation-latin">Ursa Major</p>
+                    <p class="constellation-desc">Rasi bintang yang terkenal dengan asterisme "Big Dipper" atau "Bajak". Bagian dari rasi ini digunakan untuk menemukan Polaris.</p>
+                    <div class="constellation-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Bintang Terang</div>
+                            <div class="detail-value">Dubhe, Merak</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Terlihat</div>
+                            <div class="detail-value">Sepanjang Tahun</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scorpius -->
+            <div class="constellation-card">
+                <div class="constellation-image">
+                    <div class="star-pattern" id="scorpius-pattern">
+                        <!-- Pola bintang Scorpius akan dihasilkan oleh JavaScript -->
+                    </div>
+                </div>
+                <div class="constellation-info">
+                    <h2 class="constellation-name">Kalajengking</h2>
+                    <p class="constellation-latin">Scorpius</p>
+                    <p class="constellation-desc">Rasi bintang yang menyerupai bentuk kalajengking. Memiliki bintang merah terang Antares yang menandai "jantung" kalajengking.</p>
+                    <div class="constellation-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Bintang Terang</div>
+                            <div class="detail-value">Antares, Shaula</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Terlihat</div>
+                            <div class="detail-value">Mei - Agu</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Leo -->
+            <div class="constellation-card">
+                <div class="constellation-image">
+                    <div class="star-pattern" id="leo-pattern">
+                        <!-- Pola bintang Leo akan dihasilkan oleh JavaScript -->
+                    </div>
+                </div>
+                <div class="constellation-info">
+                    <h2 class="constellation-name">Singa</h2>
+                    <p class="constellation-latin">Leo</p>
+                    <p class="constellation-desc">Rasi bintang zodiak yang melambangkan singa Nemean dalam mitologi Yunani. Memiliki bentuk seperti singa dengan "sabit" di bagian depan.</p>
+                    <div class="constellation-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Bintang Terang</div>
+                            <div class="detail-value">Regulus, Denebola</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Terlihat</div>
+                            <div class="detail-value">Mar - Jun</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cygnus -->
+            <div class="constellation-card">
+                <div class="constellation-image">
+                    <div class="star-pattern" id="cygnus-pattern">
+                        <!-- Pola bintang Cygnus akan dihasilkan oleh JavaScript -->
+                    </div>
+                </div>
+                <div class="constellation-info">
+                    <h2 class="constellation-name">Angsa</h2>
+                    <p class="constellation-latin">Cygnus</p>
+                    <p class="constellation-desc">Juga dikenal sebagai "Salib Utara", rasi ini menyerupai angsa yang terbang. Terletak di sepanjang Bima Sakti dan memiliki banyak bintang terang.</p>
+                    <div class="constellation-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Bintang Terang</div>
+                            <div class="detail-value">Deneb, Albireo</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Terlihat</div>
+                            <div class="detail-value">Jun - Sep</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cassiopeia -->
+            <div class="constellation-card">
+                <div class="constellation-image">
+                    <div class="star-pattern" id="cassiopeia-pattern">
+                        <!-- Pola bintang Cassiopeia akan dihasilkan oleh JavaScript -->
+                    </div>
+                </div>
+                <div class="constellation-info">
+                    <h2 class="constellation-name">Ratu</h2>
+                    <p class="constellation-latin">Cassiopeia</p>
+                    <p class="constellation-desc">Rasi bintang yang membentuk bentuk "W" atau "M" di langit. Dinamai dari ratu yang sombong dalam mitologi Yunani.</p>
+                    <div class="constellation-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Bintang Terang</div>
+                            <div class="detail-value">Schedar, Caph</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Terlihat</div>
+                            <div class="detail-value">Sepanjang Tahun</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 Informasi Rasi Bintang | Dibuat dengan semangat untuk menjelajahi alam semesta</p>
+    </footer>
+
+    <script>
+        // Fungsi untuk membuat pola bintang
+        function createStarPattern(containerId, stars, lines) {
+            const container = document.getElementById(containerId);
+            const width = container.offsetWidth;
+            const height = container.offsetHeight;
+            
+            // Tambahkan bintang
+            stars.forEach(star => {
+                const starEl = document.createElement('div');
+                starEl.className = 'star';
+                starEl.style.width = `${star.size}px`;
+                starEl.style.height = `${star.size}px`;
+                starEl.style.left = `${star.x * width}px`;
+                starEl.style.top = `${star.y * height}px`;
+                container.appendChild(starEl);
+            });
+            
+            // Tambahkan garis penghubung
+            lines.forEach(line => {
+                const startStar = stars[line[0]];
+                const endStar = stars[line[1]];
+                
+                const length = Math.sqrt(
+                    Math.pow((endStar.x - startStar.x) * width, 2) + 
+                    Math.pow((endStar.y - startStar.y) * height, 2)
+                );
+                
+                const angle = Math.atan2(
+                    (endStar.y - startStar.y) * height, 
+                    (endStar.x - startStar.x) * width
+                ) * 180 / Math.PI;
+                
+                const lineEl = document.createElement('div');
+                lineEl.className = 'star-line';
+                lineEl.style.width = `${length}px`;
+                lineEl.style.left = `${startStar.x * width}px`;
+                lineEl.style.top = `${startStar.y * height}px`;
+                lineEl.style.transform = `rotate(${angle}deg)`;
+                
+                container.appendChild(lineEl);
+            });
+        }
+        
+        // Pola bintang untuk Orion
+        const orionStars = [
+            {x: 0.5, y: 0.2, size: 6},  // Betelgeuse
+            {x: 0.5, y: 0.5, size: 4},  // Sabuk 1
+            {x: 0.4, y: 0.5, size: 4},  // Sabuk 2
+            {x: 0.6, y: 0.5, size: 4},  // Sabuk 3
+            {x: 0.5, y: 0.8, size: 5},  // Rigel
+            {x: 0.3, y: 0.3, size: 3},  // Bahu kiri
+            {x: 0.7, y: 0.3, size: 3},  // Bahu kanan
+            {x: 0.3, y: 0.7, size: 3},  // Kaki kiri
+            {x: 0.7, y: 0.7, size: 3}   // Kaki kanan
+        ];
+        
+        const orionLines = [
+            [0, 1], [1, 2], [1, 3], [1, 4],
+            [0, 5], [0, 6], [4, 7], [4, 8],
+            [5, 2], [6, 3]
+        ];
+        
+        // Pola bintang untuk Ursa Major
+        const ursaMajorStars = [
+            {x: 0.3, y: 0.2, size: 5},  // Dubhe
+            {x: 0.5, y: 0.2, size: 4},  // Merak
+            {x: 0.6, y: 0.3, size: 4},  // Phecda
+            {x: 0.7, y: 0.4, size: 4},  // Megrez
+            {x: 0.8, y: 0.5, size: 4},  // Alioth
+            {x: 0.85, y: 0.65, size: 4}, // Mizar
+            {x: 0.9, y: 0.8, size: 4}   // Alkaid
+        ];
+        
+        const ursaMajorLines = [
+            [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6]
+        ];
+        
+        // Pola bintang untuk Scorpius
+        const scorpiusStars = [
+            {x: 0.5, y: 0.2, size: 6},  // Antares
+            {x: 0.4, y: 0.3, size: 3},
+            {x: 0.6, y: 0.3, size: 3},
+            {x: 0.35, y: 0.4, size: 3},
+            {x: 0.65, y: 0.4, size: 3},
+            {x: 0.3, y: 0.5, size: 3},
+            {x: 0.7, y: 0.5, size: 3},
+            {x: 0.25, y: 0.6, size: 3},
+            {x: 0.75, y: 0.6, size: 4}, // Shaula
+            {x: 0.2, y: 0.7, size: 3},
+            {x: 0.8, y: 0.7, size: 3},
+            {x: 0.15, y: 0.8, size: 3},
+            {x: 0.85, y: 0.8, size: 3}
+        ];
+        
+        const scorpiusLines = [
+            [0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 6],
+            [5, 7], [6, 8], [7, 9], [8, 10], [9, 11], [10, 12]
+        ];
+        
+        // Pola bintang untuk Leo
+        const leoStars = [
+            {x: 0.5, y: 0.3, size: 5},  // Regulus
+            {x: 0.4, y: 0.2, size: 4},
+            {x: 0.3, y: 0.3, size: 4},
+            {x: 0.2, y: 0.4, size: 4},
+            {x: 0.3, y: 0.5, size: 4},
+            {x: 0.4, y: 0.6, size: 4},
+            {x: 0.6, y: 0.6, size: 4},  // Denebola
+            {x: 0.7, y: 0.7, size: 3},
+            {x: 0.8, y: 0.8, size: 3}
+        ];
+        
+        const leoLines = [
+            [0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0],
+            [0, 6], [6, 7], [7, 8]
+        ];
+        
+        // Pola bintang untuk Cygnus
+        const cygnusStars = [
+            {x: 0.5, y: 0.2, size: 6},  // Deneb
+            {x: 0.3, y: 0.5, size: 4},
+            {x: 0.7, y: 0.5, size: 4},
+            {x: 0.4, y: 0.7, size: 4},
+            {x: 0.6, y: 0.7, size: 4},  // Albireo
+            {x: 0.5, y: 0.9, size: 3}
+        ];
+        
+        const cygnusLines = [
+            [0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 5]
+        ];
+        
+        // Pola bintang untuk Cassiopeia
+        const cassiopeiaStars = [
+            {x: 0.3, y: 0.2, size: 5},  // Schedar
+            {x: 0.5, y: 0.1, size: 4},  // Caph
+            {x: 0.7, y: 0.2, size: 4},
+            {x: 0.6, y: 0.4, size: 4},
+            {x: 0.4, y: 0.5, size: 4}
+        ];
+        
+        const cassiopeiaLines = [
+            [0, 1], [1, 2], [2, 3], [3, 4], [4, 0]
+        ];
+        
+        // Buat pola bintang setelah halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            createStarPattern('orion-pattern', orionStars, orionLines);
+            createStarPattern('ursa-major-pattern', ursaMajorStars, ursaMajorLines);
+            createStarPattern('scorpius-pattern', scorpiusStars, scorpiusLines);
+            createStarPattern('leo-pattern', leoStars, leoLines);
+            createStarPattern('cygnus-pattern', cygnusStars, cygnusLines);
+            createStarPattern('cassiopeia-pattern', cassiopeiaStars, cassiopeiaLines);
+        });
+    </script>
+</body>
+</html>
